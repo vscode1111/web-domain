@@ -8,10 +8,10 @@ import Link from '../src/Link';
 
 function MadeWithLove() {
   debugger;
-  console.log('temp3');
+  console.log('temp3+ ');
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Built with love by the '}
+      {'Built with love by the 1'}
       <MuiLink color="inherit" href="https://material-ui.com/">
         Material-UI
       </MuiLink>
@@ -28,7 +28,7 @@ export default function App() {
           Next.js v4-alpha with TypeScript example
         </Typography>
         <Link href="/about" color="secondary">
-          Go to the about page 2
+          Go to the about page ++
         </Link>
         <ProTip />
         <MadeWithLove />
