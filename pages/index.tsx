@@ -3,11 +3,12 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import MuiLink from '@material-ui/core/Link';
-import ProTip from '../src/ProTip';
-import Link from '../src/Link';
+import ProTip from '../src/components/ProTip';
+import Link from '../src/components/Link';
+import Layout from '../src/components/Layout';
 
 function MadeWithLove() {
-  debugger;
+  // debugger;
   console.log('temp3+ ');
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -22,17 +23,19 @@ function MadeWithLove() {
 
 export default function App() {
   return (
-    <Container maxWidth="sm">
-      <Box>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Next.js v4-alpha with TypeScript example +
+    <Layout>
+      <Container maxWidth="sm">
+        <Box>
+          <Typography variant="h4" component="h1" gutterBottom>
+            Next.js v4-alpha with TypeScript example +
         </Typography>
-        <Link href="/about" color="secondary">
-          Go to the about page ++
+          <Link href="/about" color="secondary">
+            Go to the about page ++
         </Link>
-        <ProTip />
-        <MadeWithLove />
-      </Box>
-    </Container>
+          <ProTip />
+          <MadeWithLove />
+        </Box>
+      </Container>
+    </Layout>
   );
 }
