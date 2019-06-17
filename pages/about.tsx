@@ -4,8 +4,8 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import MuiLink from '@material-ui/core/Link';
 import ProTip from '../src/components/ProTip';
-import Link from '../src/components/Link';
-import Layout from '../src/components/Layout';
+import { Layout } from '../src/components/Layout';
+import { Link } from '../src/components/Link';
 
 function MadeWithLove() {
   return (

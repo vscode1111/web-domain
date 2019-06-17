@@ -6,7 +6,7 @@ const layoutStyle = {
   border: '1px solid #DDD'
 }
 
-export default function Layout(props: any) {
+export const Layout: React.FunctionComponent<any> = props => {
   return (
     <div style={layoutStyle}>
       <Header />

@@ -1,15 +1,23 @@
 const withTypescript = require('@zeit/next-typescript');
 const webpack = require('webpack');
 const StatsPlugin = require('stats-webpack-plugin');// 
+const path = require('path');
 // const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 // const smp = new SpeedMeasurePlugin();
 const TimingCompilationPlugin = require('./TimingCompilationPlugin');
+
 
 const baseConfig = {
    maxAssetSize: 1048576
 }
 
-let t0 = new Date;
+// variables
+const srcDir = 'src';
+const buildDir = 'build';
+// const isProduction = process.argv.mode === 'production' || process.env.NODE_ENV === 'production';
+const sourcePath = path.join(__dirname, `./${srcDir}`);
+console.log(sourcePath);
+const outPath = path.join(__dirname, `./${buildDir}`);
 
 // module.exports = smp.wrap({
 module.exports = withTypescript({
@@ -17,26 +25,7 @@ module.exports = withTypescript({
       console.log(baseConfig);
       return Object.assign(config, {
          plugins: config.plugins.concat(
-            new StatsPlugin('stats.json', {
-               timings: true,
-               assets: true,
-               chunks: true,
-               chunkModules: true,
-               modules: true,
-               children: true,
-               cached: true,
-               reasons: true
-            }),
             new TimingCompilationPlugin(),
-            // function () {
-            //    this.plugin('done', function (stats) {
-            //       console.log(('\n[' + new Date().toLocaleString() + ']') + ' Begin a new compilation.\n');
-            //       const diff = new Date().valueOf() - t0.valueOf();
-            //       t0 = new Date();
-            //       console.log(`${diff} ms`);
-            //    }
-            //    );
-            // }
          ),
          performance: {
             hints: "warning", // enum
@@ -47,23 +36,19 @@ module.exports = withTypescript({
                return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
             }
          },
-         resolve: Object.assign(config.resolve, {
-            alias: Object.assign(
-               config.resolve.alias,
-               config.isServer ? {} : { fetch: 'node-fetch' }
-            ),
-         }),
-         stats: {
-            // copied from `'minimal'`
-            all: true,
-            modules: true,
-            maxModules: 0,
-            errors: true,
-            warnings: true,
-            // our additional options
-            moduleTrace: true,
-            errorDetails: true
-         },
       });
    },
 });
+
+// module.exports = {
+//    webpack(config, options) {
+//      return Object.assign(config, {
+//        resolve: {
+//          alias: {
+//            components: path.join(__dirname, 'components'),
+//          }
+//        },
+//      }) 
+//    }
+//  }
+ 
