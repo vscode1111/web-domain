@@ -3,9 +3,9 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import MuiLink from '@material-ui/core/Link';
-import ProTip from '../src/components/ProTip';
-import { Layout } from '../src/components/Layout';
-import { Link } from '../src/components/Link';
+import ProTip from 'src/components/ProTip';
+import { Layout } from 'src/components/Layout';
+import { Link } from 'src/components/Link';
 
 function MadeWithLove() {
   // debugger;
@@ -30,7 +30,7 @@ export default function App() {
             Next.js v4-alpha with TypeScript example +
         </Typography>
           <Link href="/about" color="secondary">
-            Go to the about page ++
+            Go to the about page +++
         </Link>
           <ProTip />
           <MadeWithLove />

@@ -2,10 +2,8 @@ const withTypescript = require('@zeit/next-typescript');
 const webpack = require('webpack');
 const StatsPlugin = require('stats-webpack-plugin');// 
 const path = require('path');
-// const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
-// const smp = new SpeedMeasurePlugin();
 const TimingCompilationPlugin = require('./TimingCompilationPlugin');
-
+const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPlugin;
 
 const baseConfig = {
    maxAssetSize: 1048576
@@ -19,10 +17,12 @@ const sourcePath = path.join(__dirname, `./${srcDir}`);
 console.log(sourcePath);
 const outPath = path.join(__dirname, `./${buildDir}`);
 
-// module.exports = smp.wrap({
 module.exports = withTypescript({
    webpack: (config, options) => {
-      console.log(baseConfig);
+      config.resolve.plugins = [
+         ...config.resolve.plugins || [],
+         new TsConfigPathsPlugin(),
+      ];
       return Object.assign(config, {
          plugins: config.plugins.concat(
             new TimingCompilationPlugin(),
@@ -39,16 +39,3 @@ module.exports = withTypescript({
       });
    },
 });
-
-// module.exports = {
-//    webpack(config, options) {
-//      return Object.assign(config, {
-//        resolve: {
-//          alias: {
-//            components: path.join(__dirname, 'components'),
-//          }
-//        },
-//      }) 
-//    }
-//  }
- 
