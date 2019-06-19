@@ -2,24 +2,12 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import MuiLink from '@material-ui/core/Link';
 import ProTip from '../src/components/ProTip';
 import { Layout } from '../src/components/Layout';
 import { Link } from '../src/components/Link';
+import { MadeWithLove } from '.';
 
-function MadeWithLove() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Built with love by the '}
-      <MuiLink color="inherit" href="https://material-ui.com/">
-        Material-UI
-      </MuiLink>
-      {' team.'}
-    </Typography>
-  );
-}
-
-export default function App() {
+export default () => {
   return (
     <Layout>
       <Container maxWidth="sm">
