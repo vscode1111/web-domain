@@ -4,18 +4,21 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.1.1",
+    "@material-ui/icons": "^4.2.0",
     "@material-ui/styles": "^4.1.1",
     "@zeit/next-typescript": "^1.1.1",
+    "material-ui-icons": "^1.0.0-beta.36",
     "next": "^8.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 3100",
     "build": "next build",
     "start": "next start"
   },
   "devDependencies": {
+    "@svgr/webpack": "^4.3.0",
     "@types/next": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",

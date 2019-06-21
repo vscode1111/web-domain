@@ -6,7 +6,7 @@ const TimingCompilationPlugin = require('./TimingCompilationPlugin');
 const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPlugin;
 
 const baseConfig = {
-   maxAssetSize: 1048576
+   maxAssetSize: 4 * 1048576
 }
 
 // variables
@@ -23,6 +23,10 @@ module.exports = withTypescript({
          ...config.resolve.plugins || [],
          new TsConfigPathsPlugin(),
       ];
+      config.module.rules.push({
+         test: /\.svg$/,
+         use: ['@svgr/webpack'],
+      });
       return Object.assign(config, {
          plugins: config.plugins.concat(
             new TimingCompilationPlugin(),
