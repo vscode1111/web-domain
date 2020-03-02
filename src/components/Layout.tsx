@@ -1,4 +1,4 @@
-import Header from './Header'
+import { Header } from './Header'
 import { ReactNode } from 'react';
 
 const layoutStyle = {

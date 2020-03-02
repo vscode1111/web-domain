@@ -23,7 +23,7 @@ interface INextComposedProps {
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
-export const Link: React.FunctionComponent<IProps & LinkBaseProps> = props => {
+export const Link: React.FunctionComponent<IProps> = props => {
   const { activeClassName, router, className: classNameProps, naked, ...other } = props;
 
   const className = clsx(classNameProps, {

@@ -1,4 +1,3 @@
-// import { Link } from "./Link";
 import { AppBar, Toolbar, Grid, Typography, IconButton } from "@material-ui/core";
 import { Link } from "./Link";
 import MenuIcon from '@material-ui/icons/Menu';
@@ -8,6 +7,8 @@ import Tab from '@material-ui/core/Tab';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Menu from "./Menu";
+import React from "react";
 
 const linkStyle = {
   marginRight: 15
@@ -76,60 +77,88 @@ const styles = ({
   }
 })
 
-export default () =>
-  <>
-    {/* <Link href="/">
-      <a style={linkStyle}>Home</a>
-    </Link>
-    <Link href="/about">
-      <a style={linkStyle}>About</a>
-    </Link> */}
-    <AppBar position="absolute" color="default" >
-      <Toolbar>
-        <Grid container spacing={10} alignItems="baseline">
-          <Grid item xs={12} style={styles.flex}>
-            <div style={styles.inline}>
-              <Typography variant="h6" color="inherit" noWrap>
-                <Link href='/'>
-                  <img width={20} src={logo} alt="" />
-                  <span style={styles.tagline}>Material Sense</span>
-                </Link>
-              </Typography>
-            </div>
-            <div style={styles.productLogo}>
-              <Typography>
-                A material UI Template
-                        </Typography>
-            </div>
-            <div style={styles.iconContainer}>
-              <IconButton color="inherit" aria-label="Menu">
-                <MenuIcon />
-              </IconButton>
-            </div>
-            <div style={styles.tabContainer}>
-              <SwipeableDrawer anchor="right">
-                <AppBar title="Menu" />
-                <List>
+interface IProps {
+  currentPath?: string;
+  location?: Location;
+};
+
+interface IState {
+  value: string;
+};
+
+export class Header extends React.Component<IProps, IState> {
+  public readonly state: IState = {
+    value: 'test'
+  };
+
+  current = () => {
+    if (this.props.currentPath === '/home') {
+      return 0
+    }
+    if (this.props.currentPath === '/dashboard') {
+      return 1
+    }
+    if (this.props.currentPath === '/signup') {
+      return 2
+    }
+    if (this.props.currentPath === '/wizard') {
+      return 3
+    }
+    if (this.props.currentPath === '/cards') {
+      return 4
+    }
+  }
+
+  render() {
+    return (
+      <AppBar position="absolute" color="default" >
+        <Toolbar>
+          <Grid container spacing={10} alignItems="baseline">
+            <Grid item xs={12} style={styles.flex}>
+              <div style={styles.inline}>
+                <Typography variant="h6" color="inherit" noWrap>
+                  <Link href='/'>
+                    <img width={20} src={logo} alt="" />
+                    <span style={styles.tagline}>Material Sense</span>
+                  </Link>
+                </Typography>
+              </div>
+              <div style={styles.productLogo}>
+                <Typography>
+                  A material UI Template
+                </Typography>
+              </div>
+              <div style={styles.iconContainer}>
+                <IconButton color="inherit" aria-label="Menu">
+                  <MenuIcon />
+                </IconButton>
+              </div>
+              <div style={styles.tabContainer}>
+                {/* <SwipeableDrawer anchor="right" onOpen={() => { }} onClose={() => { }} open={true}>
+                  <AppBar title="Menu" />
+                  <List>
+                    {Menu.map((item) => (
+                      <ListItem button key={item.label}>
+                        <ListItemText primary={item.label} />
+                      </ListItem>
+                    ))}
+                  </List>
+                </SwipeableDrawer> */}
+                <Tabs
+                  value={this.current() || this.state.value}
+                  indicatorColor="primary"
+                  textColor="primary"
+                >
                   {Menu.map((item, index) => (
-                    <ListItem component={Link} to={{ pathname: item.pathname, search: this.props.location.search }} button key={item.label}>
-                      <ListItemText primary={item.label} />
-                    </ListItem>
+                    <Tab key={index} component={Link} href={item.pathname} style={styles.tabItem } label={item.label} />
                   ))}
-                </List>
-              </SwipeableDrawer>
-              <Tabs
-                value={this.current() || this.state.value}
-                indicatorColor="primary"
-                textColor="primary"
-              >
-                {Menu.map((item, index) => (
-                  <Tab key={index} component={Link} to={{ pathname: item.pathname, search: this.props.location.search }} classes={{ root: classes.tabItem }} label={item.label} />
-                ))}
-              </Tabs>
-            </div>
+                </Tabs>
+              </div>
+            </Grid>
           </Grid>
-        </Grid>
-      </Toolbar>
-    </AppBar>
-  </>
+        </Toolbar>
+      </AppBar>
+    )
+  }
+}
 
